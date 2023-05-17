@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnqwxpd8ikoed"]
+
+[ext_resource type="Script" path="res://scripts/battle_manager.gd" id="1_bvbsi"]
+[ext_resource type="PackedScene" uid="uid://bvpxdyuab5rau" path="res://prefabs/card.tscn" id="1_pr3vq"]
+[ext_resource type="PackedScene" uid="uid://r2uh0g60y75u" path="res://prefabs/hero_unit.tscn" id="1_ud38o"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivm2i"]
+
+[node name="Scene" type="Node3D"]
+script = ExtResource("1_bvbsi")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1, 2)
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ivm2i")
+
+[node name="Units" type="Node3D" parent="."]
+
+[node name="HeroField" type="Node3D" parent="Units"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="HeroUnit" parent="Units/HeroField" instance=ExtResource("1_ud38o")]
+
+[node name="EnemyField" type="Node3D" parent="Units"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="HeroUnit" parent="Units/EnemyField" instance=ExtResource("1_ud38o")]
+
+[node name="Canvas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TurnText" type="RichTextLabel" parent="Canvas"]
+layout_mode = 0
+offset_right = 225.0
+offset_bottom = 71.0
+text = "Your turn"
+
+[node name="Card" parent="Canvas" instance=ExtResource("1_pr3vq")]
+offset_left = 508.0
+offset_top = 466.0
+offset_right = 608.0
+offset_bottom = 616.0
