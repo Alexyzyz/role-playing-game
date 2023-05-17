@@ -10,6 +10,7 @@ script = ExtResource("1_pdviv")
 [node name="Character" type="Sprite3D" parent="."]
 offset = Vector2(0, 16)
 pixel_size = 0.02
+texture_filter = 0
 texture = ExtResource("1_m8da3")
 
 [node name="Health" type="Sprite3D" parent="."]
