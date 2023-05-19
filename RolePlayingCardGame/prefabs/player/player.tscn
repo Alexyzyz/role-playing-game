@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccrubyp1f7p7h"]
+
+[ext_resource type="Texture2D" uid="uid://upwwjjh68f4h" path="res://sprites/hero.png" id="1_1mevg"]
+[ext_resource type="Script" path="res://prefabs/player/player.gd" id="1_p87iu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfd32"]
+radius = 0.16
+height = 0.64
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+up_direction = Vector3(0, -1, 0)
+script = ExtResource("1_p87iu")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+cast_shadow = 2
+offset = Vector2(0, 16)
+pixel_size = 0.02
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("1_1mevg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
+shape = SubResource("CapsuleShape3D_cfd32")

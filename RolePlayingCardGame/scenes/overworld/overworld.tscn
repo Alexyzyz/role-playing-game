@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0hvq8oydjo15"]
+
+[ext_resource type="PackedScene" uid="uid://ccrubyp1f7p7h" path="res://prefabs/player/player.tscn" id="1_h66cy"]
+[ext_resource type="PackedScene" uid="uid://cuow4hp6tk7tl" path="res://prefabs/overworld_camera/overworld_camera.tscn" id="2_ydy4h"]
+[ext_resource type="PackedScene" uid="uid://dl7ytia4lx78r" path="res://prefabs/bush/bush.tscn" id="3_7jsbp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1xrb"]
+albedo_color = Color(0.733333, 0.839216, 0.431373, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rmo26"]
+material = SubResource("StandardMaterial3D_p1xrb")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gx61c"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_bnlkq"]
+rayleigh_coefficient = 1.0
+rayleigh_color = Color(0.403922, 0.607843, 0.952941, 1)
+ground_color = Color(0.87451, 0.964706, 1, 1)
+
+[sub_resource type="Sky" id="Sky_4n0kh"]
+sky_material = SubResource("PhysicalSkyMaterial_bnlkq")
+
+[sub_resource type="Environment" id="Environment_ilboo"]
+background_mode = 1
+background_color = Color(0.356863, 0.67451, 0.784314, 1)
+sky = SubResource("Sky_4n0kh")
+ambient_light_source = 2
+ambient_light_color = Color(0.290196, 0.631373, 0.635294, 1)
+reflected_light_source = 2
+glow_enabled = true
+
+[node name="Overworld" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_rmo26")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_gx61c")
+
+[node name="Player" parent="." instance=ExtResource("1_h66cy")]
+up_direction = Vector3(0, 1, 0)
+
+[node name="OverworldCamera" parent="." instance=ExtResource("2_ydy4h")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.919176, -0.0405677, -0.391753, -0.263914, -0.674887, 0.689113, -0.292345, 0.736806, 0.609633, -2.85075, 3.62223, 3.52493)
+light_color = Color(0.960784, 0.890196, 0.713726, 1)
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ilboo")
+
+[node name="Bush" parent="." instance=ExtResource("3_7jsbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26698, 0, 0)
+
+[node name="Bush2" parent="." instance=ExtResource("3_7jsbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61111, 0, 0.965492)
+
+[node name="Bush3" parent="." instance=ExtResource("3_7jsbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54025, 0, 1.86087)
+
+[node name="Bush4" parent="." instance=ExtResource("3_7jsbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54025, 0, 1.86087)
