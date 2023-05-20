@@ -11,8 +11,8 @@ var hp: int;
 func _ready():
 	name_text.text = unit_name;
 
-func spawn(name: String, spawn_position: Vector3):
-	unit_name = name;
+func initialize(_unit_name: String, spawn_position: Vector3):
+	unit_name = _unit_name;
 	hp_max = 10;
 	hp = hp_max;
 

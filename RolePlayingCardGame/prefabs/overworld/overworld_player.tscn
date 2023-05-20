@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccrubyp1f7p7h"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Texture2D" uid="uid://upwwjjh68f4h" path="res://sprites/hero.png" id="1_1mevg"]
-[ext_resource type="Script" path="res://prefabs/player/player.gd" id="1_p87iu"]
+[ext_resource type="Script" path="res://scripts/overworld/overworld_player.gd" id="1_p87iu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cfd32"]
 radius = 0.16

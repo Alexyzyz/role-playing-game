@@ -8,11 +8,11 @@ func _ready():
 	body_exited.connect(_on_body_exited)
 
 
-func _on_body_entered(body: Node3D):
+func _on_body_entered(_body: Node3D):
 	anim_player.play("move")
 
 
-func _on_body_exited(body: Node3D):
+func _on_body_exited(_body: Node3D):
 	anim_player.play("move")
 	print("hey!")
 

@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl7ytia4lx78r"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://prefabs/bush/bush.gd" id="1_07m11"]
+[ext_resource type="Script" path="res://scripts/bush.gd" id="1_07m11"]
 [ext_resource type="Texture2D" uid="uid://d4agu5vu0h862" path="res://sprites/bush.png" id="1_k7eat"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_18xnc"]

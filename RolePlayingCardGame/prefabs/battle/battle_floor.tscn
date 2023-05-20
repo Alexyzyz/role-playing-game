@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://2wupohmex0qs"]
+
+[ext_resource type="PackedScene" path="res://prefabs/bush.tscn" id="1_7rmla"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1xrb"]
+albedo_color = Color(0.733333, 0.839216, 0.431373, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rmo26"]
+material = SubResource("StandardMaterial3D_p1xrb")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gx61c"]
+size = Vector3(10, 0.5, 10)
+
+[node name="BattleFloor" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_rmo26")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gx61c")
+
+[node name="Bush" parent="." instance=ExtResource("1_7rmla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26698, 0.25, 0)
+
+[node name="Bush2" parent="." instance=ExtResource("1_7rmla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61111, 0.25, 0.965492)
+
+[node name="Bush3" parent="." instance=ExtResource("1_7rmla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54025, 0.25, 1.86087)
+
+[node name="Bush4" parent="." instance=ExtResource("1_7rmla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54025, 0.25, 1.86087)
