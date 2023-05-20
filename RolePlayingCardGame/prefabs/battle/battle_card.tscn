@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfggxhunfgm8i"]
+
+[ext_resource type="Texture2D" uid="uid://c011kmrbmjap6" path="res://sprites/basic/rect_rounded.svg" id="1_6yi3o"]
+[ext_resource type="Script" path="res://scripts/cards/card_controller.gd" id="1_8xvy3"]
+[ext_resource type="Texture2D" uid="uid://upwwjjh68f4h" path="res://sprites/hero.png" id="2_v1yoa"]
+[ext_resource type="FontFile" uid="uid://dacfr73m1koq6" path="res://fonts/font_generic.ttf" id="4_dtslt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bxmw6"]
+font = ExtResource("4_dtslt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5cgn"]
+font = ExtResource("4_dtslt")
+font_size = 56
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_offset = Vector2(2, 2)
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 200.0
+pivot_offset = Vector2(100, 150)
+script = ExtResource("1_8xvy3")
+
+[node name="Front" type="NinePatchRect" parent="."]
+self_modulate = Color(0.74902, 0.67451, 0.67451, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+texture = ExtResource("1_6yi3o")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Image" type="TextureRect" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_v1yoa")
+expand_mode = 5
+
+[node name="Title" type="Label" parent="Content"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Placeholder Name"
+label_settings = SubResource("LabelSettings_bxmw6")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_top = -34.0
+offset_right = 15.0
+offset_bottom = 48.0
+grow_horizontal = 0
+rotation = 0.15708
+text = "99"
+label_settings = SubResource("LabelSettings_l5cgn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HoverArea" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

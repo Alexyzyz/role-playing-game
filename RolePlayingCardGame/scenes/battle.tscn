@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb71xv5neo5vj"]
+[gd_scene load_steps=5 format=3 uid="uid://dt50lbfbhserk"]
 
-[ext_resource type="Script" path="res://scripts/battle_manager.gd" id="1_bvbsi"]
-[ext_resource type="PackedScene" uid="uid://bvpxdyuab5rau" path="res://prefabs/card.tscn" id="1_pr3vq"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ivm2i"]
+[ext_resource type="Script" path="res://scripts/battle/battle_manager.gd" id="1_js0kf"]
+[ext_resource type="PackedScene" uid="uid://cfggxhunfgm8i" path="res://prefabs/battle/battle_card.tscn" id="1_pr3vq"]
+[ext_resource type="PackedScene" uid="uid://2wupohmex0qs" path="res://prefabs/battle/battle_floor.tscn" id="2_si7gd"]
+[ext_resource type="Script" path="res://scripts/battle/battle_hand_manager.gd" id="3_5mcs4"]
 
 [node name="Scene" type="Node3D"]
-script = ExtResource("1_bvbsi")
+script = ExtResource("1_js0kf")
+
+[node name="FloorOverworld" parent="." instance=ExtResource("2_si7gd")]
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1, 2)
@@ -14,10 +16,6 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.409923, 0.91212, 0, -0.91212, -0.409923, 0, 10, -1.91143)
 shadow_enabled = true
-
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
-mesh = SubResource("PlaneMesh_ivm2i")
 
 [node name="Units" type="Node3D" parent="."]
 
@@ -29,9 +27,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="Canvas" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -41,8 +41,21 @@ offset_right = 225.0
 offset_bottom = 71.0
 text = "Your turn"
 
-[node name="Card" parent="Canvas" instance=ExtResource("1_pr3vq")]
-offset_left = 508.0
-offset_top = 466.0
-offset_right = 608.0
-offset_bottom = 616.0
+[node name="Hand" type="Control" parent="Canvas"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -204.0
+offset_right = 76.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_5mcs4")
+
+[node name="Card" parent="Canvas/Hand" instance=ExtResource("1_pr3vq")]
+visible = false
+pivot_offset = Vector2(75, 100)

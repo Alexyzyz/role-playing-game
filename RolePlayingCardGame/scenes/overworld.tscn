@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://do20vvta76sjx"]
+
+[ext_resource type="PackedScene" uid="uid://2wupohmex0qs" path="res://prefabs/battle/battle_floor.tscn" id="1_fhj23"]
+[ext_resource type="PackedScene" path="res://prefabs/overworld/overworld_player.tscn" id="2_8tg67"]
+[ext_resource type="PackedScene" path="res://prefabs/overworld/overworld_camera.tscn" id="3_v65ka"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_bnlkq"]
+rayleigh_coefficient = 1.0
+rayleigh_color = Color(0.403922, 0.607843, 0.952941, 1)
+ground_color = Color(0.87451, 0.964706, 1, 1)
+
+[sub_resource type="Sky" id="Sky_4n0kh"]
+sky_material = SubResource("PhysicalSkyMaterial_bnlkq")
+
+[sub_resource type="Environment" id="Environment_ilboo"]
+background_mode = 1
+background_color = Color(0.356863, 0.67451, 0.784314, 1)
+sky = SubResource("Sky_4n0kh")
+ambient_light_source = 2
+ambient_light_color = Color(0.290196, 0.631373, 0.635294, 1)
+reflected_light_source = 2
+glow_enabled = true
+
+[node name="Overworld" type="Node3D"]
+
+[node name="BattleFloor" parent="." instance=ExtResource("1_fhj23")]
+
+[node name="Player" parent="." instance=ExtResource("2_8tg67")]
+up_direction = Vector3(0, 1, 0)
+
+[node name="OverworldCamera" parent="." instance=ExtResource("3_v65ka")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.919176, -0.0405677, -0.391753, -0.263914, -0.674887, 0.689113, -0.292345, 0.736806, 0.609633, -2.85075, 3.62223, 3.52493)
+light_color = Color(0.960784, 0.890196, 0.713726, 1)
+shadow_enabled = true
+shadow_blur = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ilboo")
