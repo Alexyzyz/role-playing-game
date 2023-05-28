@@ -1,8 +1,10 @@
 extends Node
 
-const CARD_SPACING = 4;
+var prefab_Card = preload("res://prefabs/battle/battle_card.tscn");
 
-var CardPrefab = preload("res://prefabs/battle/battle_card.tscn");
+var node_BattleManager: BattleManager;
+
+const CARD_SPACING = 4;
 
 var card_node_list: Array[Control] = [];
 
@@ -11,16 +13,17 @@ var is_interactable: bool = true;
 # Godot functions
 
 func _ready():
+	node_BattleManager = get_node("/root/Scene");
+	
 	subscribe_to_broadcasters();
 
 # Listeners
 
 func subscribe_to_broadcasters():
-	var scr_battle_manager = get_node("/root/Scene");
-	scr_battle_manager.card_drawn.connect(on_card_drawn);
+	node_BattleManager.signal_CardDrawn.connect(on_card_drawn);
 
 func on_card_drawn(card: Card):
-	var new_card: Control = CardPrefab.instantiate();
+	var new_card: Control = prefab_Card.instantiate();
 	self.add_child(new_card);
 	new_card.initialize(card, self);
 	
@@ -37,11 +40,13 @@ func update_card_pos():
 	
 	for i in range(0, card_node_list.size()):
 		var item: Control = card_node_list[i];
-		item.position.x = x_start + i * card_dist;
+		var card_target_pos = Vector2(x_start + i * card_dist, 0);
+		
+		item.set_position(card_target_pos);
 		
 
 # Helpers
 
 func get_card_prefab_width() -> float:
-	var card_node: Control = CardPrefab.instantiate();
+	var card_node: Control = prefab_Card.instantiate();
 	return card_node.size.x;

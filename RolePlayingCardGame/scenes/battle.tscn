@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt50lbfbhserk"]
+[gd_scene load_steps=7 format=3 uid="uid://dt50lbfbhserk"]
 
 [ext_resource type="Script" path="res://scripts/battle/battle_manager.gd" id="1_js0kf"]
 [ext_resource type="PackedScene" uid="uid://cfggxhunfgm8i" path="res://prefabs/battle/battle_card.tscn" id="1_pr3vq"]
 [ext_resource type="PackedScene" uid="uid://2wupohmex0qs" path="res://prefabs/battle/battle_floor.tscn" id="2_si7gd"]
 [ext_resource type="Script" path="res://scripts/battle/battle_hand_manager.gd" id="3_5mcs4"]
+[ext_resource type="Texture2D" uid="uid://slqnj6ycv8sl" path="res://sprites/basic/rect_rounded_dashed.svg" id="5_cdrm8"]
+
+[sub_resource type="GDScript" id="GDScript_jvklo"]
+script/source = "class_name BattleCanvasManager
+extends Node
+
+@onready var hand_container = $Hand;
+@onready var draw_pile_container = $DrawPile;
+"
 
 [node name="Scene" type="Node3D"]
 script = ExtResource("1_js0kf")
@@ -34,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = SubResource("GDScript_jvklo")
 
 [node name="TurnText" type="RichTextLabel" parent="Canvas"]
 layout_mode = 0
@@ -59,3 +69,47 @@ script = ExtResource("3_5mcs4")
 [node name="Card" parent="Canvas/Hand" instance=ExtResource("1_pr3vq")]
 visible = false
 pivot_offset = Vector2(75, 100)
+
+[node name="DrawPile" type="NinePatchRect" parent="Canvas"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(39, 49)
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("5_cdrm8")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Shadow" type="NinePatchRect" parent="Canvas/DrawPile"]
+self_modulate = Color(0.2, 0.2, 0.2, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_cdrm8")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

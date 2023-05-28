@@ -1,14 +1,17 @@
 class_name BattleManager
 extends Node
 
-signal card_drawn(card: Card);
+signal signal_CardDrawn(card: Card);
 
-const UnitPrefab = preload("res://prefabs/battle/battle_unit.tscn");
+const prefab_Unit = preload("res://prefabs/battle/battle_unit.tscn");
 
-@onready var hero_field = $Units/HeroField;
-@onready var enemy_field = $Units/EnemyField;
+@onready var node_BattleHandManager = $Canvas/Hand;
+@onready var node_DrawPile = $Canvas/DrawPile;
 
-@onready var canvas_turn_text = $Canvas/TurnText;
+@onready var node_HeroField = $Units/HeroField;
+@onready var node_EnemyField = $Units/EnemyField;
+
+@onready var node_CanvasTurnText = $Canvas/TurnText;
 
 var hero_list: Array[Unit] = [];
 var enemy_list: Array[Unit] = [];
@@ -23,13 +26,15 @@ var rng = RandomNumberGenerator.new();
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var hero = UnitPrefab.instantiate();
+	var hero = prefab_Unit.instantiate();
 	hero.initialize("Alice", Vector3(-2, 0, 0));
-	hero_field.add_child(hero);
+	hero_list.push_back(hero);
+	node_HeroField.add_child(hero);
 	
-	var enemy = UnitPrefab.instantiate();
+	var enemy = prefab_Unit.instantiate();
 	enemy.initialize("Bob", Vector3(2, 0, 0));
-	enemy_field.add_child(enemy);
+	enemy_list.push_back(enemy);
+	node_EnemyField.add_child(enemy);
 	
 	populate_draw_pile();
 	draw_n_cards(1);
@@ -47,13 +52,15 @@ func handle_choice(key: Key):
 	
 	if is_player_turn:
 		enemy_list[0].take_damage(1);
-		is_player_turn = false;
+	else:
+		hero_list[0].take_damage(1);
+	is_player_turn = !is_player_turn;
 	
 	advance_turn();
 
 func advance_turn():
 	var active_party: String = "player" if is_player_turn else "enemy";
-	canvas_turn_text.text = "It is now the " + active_party + " party's turn.";
+	node_CanvasTurnText.text = "It is now the " + active_party + " party's turn.";
 
 func populate_draw_pile():
 	for i in range(0, 30):
@@ -74,7 +81,7 @@ func draw_from_pile():
 	var drawn_card: Card = draw_pile.pop_back();
 	hand.push_back(drawn_card);
 	
-	card_drawn.emit(drawn_card);
+	signal_CardDrawn.emit(drawn_card);
 
 # Debug functions
 

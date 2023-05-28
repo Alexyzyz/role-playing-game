@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bof64n6iti4nw"
-path="res://.godot/imported/rect_rounded.svg-2a0757294239080cb1ea27ff885b6a4e.ctex"
+uid="uid://slqnj6ycv8sl"
+path="res://.godot/imported/rect_rounded_dashed.svg-21182e5b6a1bc6d5b8d025758c6ca309.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/basic/rect_rounded.svg"
-dest_files=["res://.godot/imported/rect_rounded.svg-2a0757294239080cb1ea27ff885b6a4e.ctex"]
+source_file="res://sprites/basic/rect_rounded_dashed.svg"
+dest_files=["res://.godot/imported/rect_rounded_dashed.svg-21182e5b6a1bc6d5b8d025758c6ca309.ctex"]
 
 [params]
 

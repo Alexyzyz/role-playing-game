@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/unit.gd" id="1_1ohcf"]
 [ext_resource type="Texture2D" uid="uid://upwwjjh68f4h" path="res://sprites/hero.png" id="2_8t8by"]
-[ext_resource type="Texture2D" uid="uid://bjp28xe11l43" path="res://sprites/basic/rect.svg" id="3_e63nl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_awiau"]
 
 [node name="HeroUnit" type="Node3D"]
 script = ExtResource("1_1ohcf")
@@ -17,7 +18,7 @@ texture = ExtResource("2_8t8by")
 [node name="Health" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.8, 0)
 modulate = Color(0.415686, 1, 0, 1)
-texture = ExtResource("3_e63nl")
+texture = SubResource("CompressedTexture2D_awiau")
 
 [node name="NameText" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

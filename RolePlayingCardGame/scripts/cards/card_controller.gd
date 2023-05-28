@@ -11,6 +11,8 @@ const HOVERED_SCALE_VAL = 1.1;
 const HOVERED_ALPHA = 0.5;
 const HOVER_TWEEN_DURATION = 0.05;
 
+const POSITION_TWEEN_DURATION = 0.1;
+
 var model: Card;
 var parent_container: Control;
 
@@ -68,3 +70,9 @@ func set_is_hovered(_is_hovered: bool):
 		hovered_modulate,
 		HOVER_TWEEN_DURATION);
 
+func set_position(target: Vector2):
+	var tween = self.create_tween();
+	tween.tween_property(
+		self, "position",
+		target,
+		POSITION_TWEEN_DURATION);
