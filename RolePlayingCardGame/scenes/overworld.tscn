@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://do20vvta76sjx"]
+[gd_scene load_steps=8 format=3 uid="uid://do20vvta76sjx"]
 
-[ext_resource type="PackedScene" uid="uid://2wupohmex0qs" path="res://prefabs/battle/battle_floor.tscn" id="1_fhj23"]
+[ext_resource type="Script" path="res://scenes/overworld.gd" id="1_8vu8m"]
 [ext_resource type="PackedScene" path="res://prefabs/overworld/overworld_player.tscn" id="2_8tg67"]
-[ext_resource type="PackedScene" path="res://prefabs/overworld/overworld_camera.tscn" id="3_v65ka"]
+[ext_resource type="PackedScene" uid="uid://b6q002cv6c465" path="res://prefabs/overworld/overworld_camera.tscn" id="3_v65ka"]
+[ext_resource type="PackedScene" uid="uid://bqogdx3n00eqh" path="res://scenes/basic_room.tscn" id="3_yw3xc"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_bnlkq"]
 rayleigh_coefficient = 1.0
@@ -22,13 +23,15 @@ reflected_light_source = 2
 glow_enabled = true
 
 [node name="Overworld" type="Node3D"]
-
-[node name="BattleFloor" parent="." instance=ExtResource("1_fhj23")]
+script = ExtResource("1_8vu8m")
+room_scenes = Array[PackedScene]([ExtResource("3_yw3xc")])
 
 [node name="Player" parent="." instance=ExtResource("2_8tg67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85, 0, 68)
 up_direction = Vector3(0, 1, 0)
 
 [node name="OverworldCamera" parent="." instance=ExtResource("3_v65ka")]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 85, 1.5, 73)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.919176, -0.0405677, -0.391753, -0.263914, -0.674887, 0.689113, -0.292345, 0.736806, 0.609633, -2.85075, 3.62223, 3.52493)

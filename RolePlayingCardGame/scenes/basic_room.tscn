@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqogdx3n00eqh"]
+
+[ext_resource type="PackedScene" uid="uid://2wupohmex0qs" path="res://prefabs/battle/battle_floor.tscn" id="1_mpa5f"]
+[ext_resource type="PackedScene" uid="uid://bskp1qj880do0" path="res://paths.tscn" id="4_fd5gw"]
+
+[node name="BasicRoom" type="Node3D"]
+
+[node name="BattleFloor" parent="." instance=ExtResource("1_mpa5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.25, 4)
+
+[node name="Paths" parent="." instance=ExtResource("4_fd5gw")]
