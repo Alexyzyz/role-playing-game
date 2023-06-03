@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://do20vvta76sjx"]
 
 [ext_resource type="Script" path="res://scenes/overworld.gd" id="1_8vu8m"]
-[ext_resource type="PackedScene" path="res://prefabs/overworld/overworld_player.tscn" id="2_8tg67"]
+[ext_resource type="PackedScene" uid="uid://c813ag67yfnkh" path="res://prefabs/overworld/overworld_player.tscn" id="2_8tg67"]
 [ext_resource type="PackedScene" uid="uid://b6q002cv6c465" path="res://prefabs/overworld/overworld_camera.tscn" id="3_v65ka"]
 [ext_resource type="PackedScene" uid="uid://bqogdx3n00eqh" path="res://scenes/basic_room.tscn" id="3_yw3xc"]
 

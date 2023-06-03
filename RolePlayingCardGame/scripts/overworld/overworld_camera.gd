@@ -14,4 +14,4 @@ func acquire_target():
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	if player_nodes.size() > 0:
 		var player = player_nodes[0] as Node3D
-		target_position = player.global_position + offset * Vector3(8,10,8)
+		target_position = player.global_position + offset #* Vector3(8,10,8)
